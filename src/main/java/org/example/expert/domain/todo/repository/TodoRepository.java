@@ -1,5 +1,6 @@
 package org.example.expert.domain.todo.repository;
 
+import org.example.expert.domain.todo.dto.response.TodoSearchResponse;
 import org.example.expert.domain.todo.entity.Todo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public interface TodoRepository extends JpaRepository<Todo, Long> {
+public interface TodoRepository extends JpaRepository<Todo, Long>, TodoRepositoryQuery {
 
     @Query("SELECT t FROM Todo t " +
             "LEFT JOIN t.user " +
@@ -30,4 +31,6 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
                                   @Param("startDate") LocalDateTime startDate,
                                   @Param("endDate") LocalDateTime endDate
     );
+
+
 }
